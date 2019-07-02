@@ -1,0 +1,33 @@
+server:   
+  port: 9098
+  contextPath: /bootFactory
+  session-timeout: 30  
+  tomcat.max-threads: 0  
+  tomcat.uri-encoding: UTF-8 
+
+spring:
+  application:
+    name: bootDemo
+    
+c3p0: 
+  jdbcUrl: jdbc:mysql://127.0.0.1:3306/dev
+  user: root
+  password: root
+  driverClass: com.mysql.jdbc.Driver
+  initialPoolSize: 10
+  minPoolSize: 10
+  maxPoolSize: 20
+  maxIdleTime: 60
+  acquireIncrement: 3
+  maxStatements: 1000
+  idleConnectionTestPeriod: 60
+  acquireRetryAttempts: 30
+  acquireRetryDelay: 1000
+  breakAfterAcquireFailure: false
+  testConnectionOnCheckout: false
+ 
+mybatis:
+  mapperLocations: classpath:com/fankun/factory/mapper/*.xml
+  typeAliasesPackage: com.fankun.factory.entity
+  
+     

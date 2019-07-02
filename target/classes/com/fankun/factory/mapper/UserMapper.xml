@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fankun.factory.dao.UserMapper">
+
+
+    <sql id="table_name">
+	     TEST_USER
+	</sql>
+	
+	 <sql id="column">
+	    id,user_name,password,create_time,enable
+	 </sql>
+	
+    <insert id="insert" parameterType="UserEntity">
+		INSERT INTO 
+		<include refid="table_name" /> 
+		  (
+		  user_name,password,create_time,enable
+	      )VALUES (
+          #{userName},#{password},NOW(),#{enable}
+		   )
+	</insert>
+	
+	
+	 <update id="update" parameterType="UserEntity">
+        update <include refid="table_name" />   
+        <trim prefix="set" suffixOverrides=",">
+        <if test="userName!=null and userName != ''">user_name =  #{userName},</if>
+         <if test="password!=null and password != ''">password = #{password},</if>
+         <if test="enable!=null and enable != ''">enable = #{enable}</if>
+         </trim>
+         where  id = #{id}
+    </update>
+    
+   
+	
+	
+	<resultMap id="baseMap" type="UserEntity">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="enable" property="enable" jdbcType="INTEGER" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="DATE" />
+	</resultMap>
+	
+	
+	
+		<select id="query" parameterType="java.util.Map"
+		resultMap="baseMap">
+		SELECT 
+		<include refid="column"/> 
+		FROM <include refid="table_name" /> 
+		WHERE  1=1
+		<if test="userName!=null and userName != ''"> 
+           and user_name =  #{userName} 
+        </if> 
+        <if test="enable!=null and enable != ''"> 
+            and enable = #{enable}  
+        </if>  
+         limit 1
+	</select>
+</mapper>

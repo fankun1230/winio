@@ -1,0 +1,5 @@
+spring:
+# 启动加载配置版本 开发、测试、生产 dev test prd
+  profiles:
+    active: dev
+   
