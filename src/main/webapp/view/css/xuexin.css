@@ -1,0 +1,170 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* Reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, textarea, input,
+table, caption, thead, tbody, tfoot, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+header, footer, hgroup, menu, nav, section, summary,
+time, mark, audio, video { margin:0; padding:0; outline:0; text-align:left; }
+body { text-align:center;font:12px/1.5 Simsun, Arial, Georgia;  }
+article, aside, details, figcaption, figure,
+header, footer, hgroup, menu, nav, section { display:block; }
+table { width:100%; }
+ol, ul, dl { list-style:none; }
+h1, h2, h3, h4, h5, h6, th, em, strong { font-weight:normal; font-style:normal; }
+img { border:none; }
+sub, sup { font-size:75%; line-height:0; position:relative; vertical-align:baseline; }
+sup { top:-0.5em; }
+sub { bottom:-0.25em; }
+input, textarea, select  { vertical-align:middle; }
+blockquote, q { quotes:'"' '"' "'" "'"; }
+
+/* change colours to suit your needs */
+a { color:#00c; text-decoration:underline; }
+a:hover { color:#f30; }
+h2{font: 200 18px/40px Microsoft Yahei;padding: 20px 0;text-align: center;}
+h3{font: 200 16px/40px Microsoft Yahei;}
+
+/* change colours to suit your needs */
+ins { background-color:#ff9; color:#000; text-decoration:none; }
+
+/* change colours to suit your needs */
+mark { background-color:#ff9; color:#000; font-style:italic; font-weight:bold; }
+del { text-decoration: line-through; }
+abbr[title], dfn[title] { border-bottom:1px dotted; cursor:help; }
+
+/* change border colour to suit your needs */
+hr { height:1px; margin:1em 0; padding:0; border:0; border-top:1px solid #ccc; display:block; }
+
+.clear:after { content:"."; height:0; display:block; clear:both; visibility:hidden; }
+/* 下边为浏览器兼容代码 */
+.clear { display:inline-table; }
+/* Hides from IE-mac \*/
+* html .clear { height:1%; }
+.clear { display:block; }
+/* End hide from IE-mac */
+
+/* Index */
+#help { width:990px; margin:0 auto; text-align:right; }
+#logo { width:990px; margin:30px auto; text-align:center; }
+#search_index { width:530px; margin:0 auto; }
+#search_index a { font-size:14px; }
+#search_index li.links { width:420px; line-height:30px; text-align:center; }
+#search_index li.mTop { margin-top:30px; }
+#footer_index { width:990px; margin:200px auto 0 auto; }
+#footer_index p { color:#666; text-align:center; }
+#footer_index p span { color:#00c; }
+
+/* Header */
+#header { width:990px; height:65px; margin:5px auto 0 auto; }
+#nav { width:990px; height:34px; margin:5px auto 10px auto; background:#266eb4; box-shadow:0px 0px 2px rgba(0,0,0,0.5); border-radius:3px; overflow:hidden; }
+#nav ul { height:34px; overflow:hidden; }
+#nav li { height:34px; border-right:1px solid #1d5ca5; display:inline; float:left; }
+#nav li a { padding:0 20px; font:bold 14px/34px Simsun; color:#fff; text-align:center; text-decoration:none; display:block; }
+#nav li a.current, #nav li a:hover { background:#1e578e; }
+
+/* Search */
+#search { width:988px; margin:0 auto 10px auto; padding:10px 0; border:1px solid #ccc; }
+#search ul { margin-left:35px; }
+#search li.links a { font:14px/30px Simsun; }
+#search li select { width:150px; height:32px; border:1px solid #cdcdcd; }
+
+/* Main */
+.main{width:1008px; margin:0 auto;}
+#mlListBox { width:988px; margin:0 auto; padding:20px 0; border:1px solid #ccc; overflow:hidden; }
+#mlListBox .last { border:none; }
+.mlList { width:293px; margin-left:35px; border-right:1px dashed #ccc; display:inline; float:left; }
+.mlList dt { font:bold 14px/30px Simsun; color:#369; }
+.mlList dd { height:24px; }
+.mlList dd a { line-height:24px; }
+.list { width:990px; margin:0 auto; }
+.list dt, .list dd { padding-left:20px; height:24px; }
+.list dt { margin-top:20px; }
+.list dt a { font-size:14px; }
+.list dt span { padding:0 5px; display:inline-block; color:#fff; }
+span.zcjy { background:#266eb4; }
+span.ydx { background:#c60; }
+.list dd { color:#666; }
+.list dd span { color:#39c; }
+#links { width:990px; margin:0 auto; padding:20px 0; overflow:hidden; }
+#map { width:485px; height:350px; float:right; }
+.linkList h2 { font:200 18px/40px Microsoft Yahei; color:#036; }
+.linkList h3 a { font:bold 14px/40px Simsun; }
+.linkList dt { font:bold 14px/40px Simsun; color:#666; float:left; }
+.linkList dd a { font:14px/40px Simsun; }
+#details { width:990px; height:530px; margin:10px auto; }
+#detailm { width:990px; height:380px; margin:10px auto; }
+#detailn { width:990px; height:650px; margin:10px auto; }
+#details h2 { font:200 18px/40px Microsoft Yahei; }
+#leftTabs { height:514px; width:37px; float:left; display:table; }
+#leftTabs li { width:35px; height:257px; border:1px solid #cecdcb; text-align:center; vertical-align:middle; overflow:hidden; cursor:pointer; }
+#leftTabs li p { font:200 18px/23px Microsoft Yahei;padding-top:40px; text-align:center; }
+#leftTabs li:hover, #leftTabs li.current { background:#2770b5; border:1px solid #1a4492; color:#fff; }
+.detailsCon {margin:0 auto 30px 0;width:950px;border:1px solid #cecdcb; padding:5px;}
+
+.detailsCon >div { }
+.detailsCon>div h3{}
+.tabs { height:30px; border-bottom:2px solid #036; }
+.tabs ul { height:30px; overflow:hidden; }
+.tabs ol { height:30px; overflow:hidden; }
+.tabs li { margin-right:2px; padding:0 8px; border:1px solid #e3e3e3; border-bottom:0; border-radius:3px 3px 0 0; font:bold 14px/26px Simsun; color:#4b6a89; display:inline; float:left; cursor:pointer; }
+.tabs li.current { background:#2770b5; border:1px solid #1a4492; border-bottom:0; color:#fff; }
+.tabs li:hover { color:#f30; }
+.tabs li.current:hover { color:#fff; }
+.subTabs { height:32px; margin:5px 0; overflow:hidden; }
+.subTabs li { margin-right:3px; padding:0 20px; background:#f3f3f3; border:1px solid #ddd; border-radius:3px; line-height:30px; display:inline; float:left; cursor:pointer; }
+.subTabs li.current { background:#568bc1; border:1px solid #4989b9; color:#fff; }
+.detailsList { border-collapse:collapse; }
+.detailsList th, .detailsList td { height:20px; padding:5px; border:1px solid #d5d5d5; }
+.detailsList th { background:#f3f3e3; text-align:right; font:bold 14px/20px Simsun; }
+
+/* Footer */
+#footer { width:990px; height:50px; margin:35px auto 0 auto; border-top:1px solid #ccc; color:#666; line-height:0px; text-indent:0px;}
+
+/* Forms */
+.inp_s_index { width:420px; height:28px; box-shadow:1px 1px 1px rgba(0,0,0,0.5) inset; border:1px solid #cdcdcd; }
+.btn_s_index { width:95px; height:32px; box-shadow:1px 1px 1px rgba(0,0,0,0.2); background:url(../images/btn_s_index.jpg) no-repeat; border-style:none; border:1px solid #6a6a6a; text-align:left; text-indent:30px; cursor:pointer; }
+
+
+/* Others */
+.mTop { margin-top:10px; }
+.mRight { margin-right:10px; }
+.mBottom { margin-bottom:10px; }
+.mLeft { margin-left:10px; }
+.show { display:block; }
+.hide { display:none; }
+.left { text-align:left; }
+.center { text-align:center; }
+.right { text-align:right; }
+th.left, td.left { text-align:left; }
+th.center, td.center { text-align:center; }
+th.right, td.right { text-align:right; }
+.fL { float:left; }
+.fR { float:right; }
+.indent { text-indent:2em; }
+.readonly { background:#fff; color:#333; }
+.must { color:red; padding-left:3px; }
+.relativeLeft { position:relative; float:left; font-weight:700; color:#19548e; font-size:14px; margin-right:5px; }
+.relativeRight { position:relative; float:right; }
+
+.top{width:990px; height:124px; background:url(../images/header_02.png) no-repeat; }
+.top-a{width:980px; float:left; height:40px; line-height:40px; text-align:right; font-size:14px;}
+.top-a a{color:#000; 	text-decoration:underline; }
+.top-a a:hover{text-decoration:none; color:#900;}
+#gsh2 {background-color:#ce010c ;color:white;}
+
+/*menu*/
+.sideMenu{position: fixed;top: 50%;right: 50px;margin-top:-144px;color: #333;font-size: 14px}
+.sideMenu >li{padding-bottom: 20px;}
+.subSideMenu{padding-top: 5px; color: #767676;}
+.subSideMenu li{border-left: 1px solid transparent;padding-left: 8px;cursor: pointer;font-size: 12px}
+.subSideMenu li:hover{border-left: 1px solid rgb(86, 61, 124);color: rgb(86, 61, 124);}
+.subSideMenu li.active{color: rgb(86, 61, 124);}

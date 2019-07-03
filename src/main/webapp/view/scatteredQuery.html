@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+	    <title>零散查询</title>
+	    <meta name="description" content="" />
+	    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	    <meta content="yes" name="apple-mobile-web-app-capable" />
+	    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+	    <meta content="telephone=no" name="format-detection" />
+	    <meta content="email=no" name="format-detection" />
+	     <link href="img/favicon.ico" type="image/vnd.microsoft.icon" rel="shortcut icon" />
+	    <link rel="stylesheet" type="text/css" href="css/common.css"/>
+	    <style>
+	    	.pageRegister{padding: 70px 10px 40px 10px;}
+	    
+		    .step{width: 214px;margin: 0 auto 10px auto;font-size: 14px;overflow: hidden;}		
+			.step span{float: left;width: 50%;color: #999999;text-align: center;text-shadow: 0 1px #fff;}
+			.step span.cover{color: #333;text-shadow: 0 1px #D2BDBD;}
+			
+			.progress {margin:0 auto 20px auto;width:256px;overflow: hidden;}
+	    		    	
+	    	.codeBox .getTelCode{position: absolute;z-index:600;top: 1px;right: 0;width:106px;padding:4px 0;line-height:38px;vertical-align:middle;text-align: center;letter-spacing: 3px;background:#01C676;border: 2px solid #01C676;color:#fff;border-radius: 4px;cursor: pointer;}
+   			.codeBox .getTelCode.on{border: 2px solid #449d44;background: #449d44;}	
+   			
+   			.pageRegister h2{background: #01C676;color: #fff;}
+   			
+			.pageRegister .btn_base{background: #01C676;}
+			.pageRegister .btn_base.on{background: #449d44}
+			.pageRegister .btn_base:hover{background: #23DE92;}
+			@media only screen and (min-width:992px){
+			    .pageRegister{margin: 50px auto 40px;padding: 50px 90px;width: 574px;background: #fff;}
+			    .pageRegister h2{color: #01C676;background: transparent;}
+	    		.progress{margin-bottom: 50px;}
+			}
+			
+	    </style>
+	</head>
+	<body>	
+		<h1>学信网</h1>
+		<div class="fadeBox">
+			<div class="fade">
+			  <div id="preloader">
+			        <span></span>
+			        <span></span>
+			        <span></span>
+		            <span></span>
+			    </div>
+			</div>
+		</div>
+			
+			<div class="pageRegister">
+				<h2>学信网-零散查询（学历编号+姓名）</h2>
+				<div class="step">
+					<span class="cover">填写学历信息</span>
+			        <span>手机验证</span>
+				</div>
+				<div class="progress">
+					<div class="progress_side"></div>
+			     	<div class="progress_bar cover"><span></span><em>1</em><span></span></div>   
+			     	<div class="progress_bar"><span></span><em>2</em><span></span></div>
+			     	<div class="progress_side"></div>
+			    </div>
+				<div class="main">
+					<div id="registerStep_1">
+						<form action="">
+							<ul class="form_list">
+								<li>
+				                    <span>×</span><input type="text" id="register_text_loginName" name="" placeholder="学历证书或学历证明书编号">
+				                </li>
+				                <li>
+				                    <span>×</span><input type="text" id="register_text_name" name="" placeholder="学历证书或学历证明书上的姓名">
+				                </li>
+				                <li>
+				                    <span>×</span><input type="text" id="register_text_identityID" name="" maxlength="18" placeholder="身份证号">
+				                </li>			                
+				                <li>
+				                	<span>×</span>
+				                    <div class="codeBox registerCodeBox">
+				                         <input type="text" id="register_txt_code" name="code" placeholder="验证码">
+				                         <img id="register_checkCode" class="code" src="" alt=""/>
+				                         <b class="loading"></b>
+				                    </div>
+			                 	</li>	                 	
+			            	</ul>
+		            	
+		            	
+			            	<!--<div class="checkBox">            		
+		                 		<input type="checkbox" name="" id="proxyConfirm" checked="checked" value="" />
+		                 		<label for="proxyConfirm">确认并提交 <a href="proxy.html" id="proxy">《授权书》</a></label>	                 	
+			            	</div>-->
+			            	<div class="login-left-mail" id='register_error_email'></div>
+			        		<div class="btn_base" id="btn_register">下一步</div>
+		        		</form>
+	        		</div>
+	        		<div id="registerStep_2" style="display: none;">
+	        			<form action="">
+		        			<ul class="form_list">
+		
+				                <li>		           
+				                    <div class="codeBox" style="padding-right: 110px;">
+				                        <input type="text" id="register_text_tel" name="" placeholder="请输入手机号码">		                        
+				                        <b class="getTelCode">获取动态码</b>
+				                    </div>
+			                 	</li>
+			                 	<li>
+				                    <span>×</span><input type="tel" id="register_txt_telCode" name="" placeholder="请输入动态码">
+				                </li>
+								
+			            	</ul>	
+		            	
+		            		<div class="login-left-mail" id='register_2_error_email'></div>
+	        				<div class="btn_base" id="btn_register_2">提交</div>
+	        			</form>
+	        		</div>
+	        		<div class="other_link">
+	        			<div class="fl"><a href="index.html">个人登录</a></div>
+	        			<div class="fr"><a href="https://account.chsi.com.cn/account/preregister.action?from=account-login">注册</a></div>
+	        		</div>
+				</div>
+			</div>
+
+	
+		<script type="text/javascript" src="js/jquery-1.7.min.js">				
+		</script>
+		<script type="text/javascript" src="js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<script>		 		   			
+		   changeCode("getVerificationCodeForLogin","#register_checkCode");	
+		    $("#register_checkCode").on('click',function(){
+		    	changeCode("getVerificationCodeForLogin","#register_checkCode")			            		
+    		});
+
+			var proxyConfirm=true;
+			$("#proxyConfirm").click(function(){
+				proxyConfirm=!proxyConfirm	
+			})
+
+			var registerLock=false;
+			var userName;
+			var ID;	
+			var loginName;
+			$("#btn_register").click(function(){
+				if(registerLock)return false;
+			 	userName=trim($("#register_text_name").val());
+				ID=trim($("#register_text_identityID").val());
+				loginName=trim($("#register_text_loginName").val());
+			   var verificationCode=trim($("#register_txt_code").val());
+				if(loginName.length<=0){
+	                $('#register_error_email').text('学历编号不能为空或空格');
+	                return false;	
+				}	
+				if(userName.length<=0){
+	                $('#register_error_email').text('姓名不能为空或空格');
+	                return false;	
+				}				
+				if(ID.length<=0){
+			        $("#register_error_email").text("身份证号码不能为空或空格");
+			        return false
+			    }else if(!/^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$|^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/.test(ID)) {
+                    
+                    $('#register_error_email').text('身份证格式错误');
+                    return false;
+                }else{
+                    if(ID.length==18){
+                        var arryID=ID.split("");
+                        var ratio=[7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2];
+                        var x=0;
+                        for(var i=0;i<17;i++){
+                            x=x+arryID[i]*ratio[i]
+                        }
+                        x=x%11;
+                        var arryL=[1,0,'X',9,8,7,6,5,4,3,2];
+                        var last=arryL[x];
+                        if(arryID[17]!=last){//检验第18位
+                            
+                            $('#register_error_email').text('身份证格式错误');
+                            return false;
+                        }
+                    }
+                    $('#register_error_email').text('');
+                }
+    			if (verificationCode.length <= 0) {
+                    
+                    $('#register_error_email').text('验证码不能为空或空格');
+                    return;
+                }
+				if(proxyConfirm==false){
+	                
+	                $('#register_error_email').text('请认真阅读并勾选同意《授权书》');
+	                return;	
+	            }				
+				$('#register_error_email').text('');
+				var parameter={loginName:loginName,userName: userName,identityCard: ID,verificationCode: verificationCode,keyID: keyID}
+				$.ajax({
+	                url:apiHostName+"/login",
+	                type:"post",
+	                data:JSON.stringify(parameter),
+	                dataType:"json",
+	                contentType:"application/json",
+	                beforeSend:function(){
+	                	$("#btn_submit").addClass("btn_base_hover");
+	                    $(".fadeBox").show();
+	                	registerLock=true;					
+	                    
+	                },
+	                success:function(data){                	
+	                    if(data.status==0){
+	                        showAlert(data.errorMsg);	 
+	                        $("#register_txt_code").val("");
+	                	changeCode("getVerificationCodeForLogin","#register_checkCode");  
+	                        return;
+	                    }else if(data.status==1){   
+	                    	$("#registerStep_1").hide();
+							$("#registerStep_2").show();
+							$(".progress_bar:eq(0)").removeClass("cover");
+							$(".progress_bar:eq(1)").addClass("cover");
+							$(".step span:eq(0)").removeClass("cover");
+							$(".step span:eq(1)").addClass("cover")
+	                    	
+	                        return ;
+	                    }
+	
+	                },error:function(data){
+	                	$("#register_txt_code").val("");
+	                	changeCode("getVerificationCodeForLogin","#register_checkCode");       		                   
+	                },complete : function(XMLHttpRequest,status){
+	                	$("#btn_submit").removeClass("btn_base_hover");
+	                    $(".fadeBox").hide();		
+	                    
+						registerLock=false;
+	                   	                    
+	                    var sessionstatus=XMLHttpRequest.getResponseHeader("sessionstatus");
+	                    if(sessionstatus=="timeout"){
+	                        var rediredUrl=XMLHttpRequest.getResponseHeader("rediredUrl");
+	                        window.open(rediredUrl,'_top');
+	                    }
+	                    return false;
+	                }
+	            });									
+			})
+			var getTelCodeLock=false;
+			$(".getTelCode").click(function(){
+				if(getTelCodeLock){return}
+				
+				var mobile=trim($("#register_text_tel").val());	               
+                var isMobile=/^((13[0-9])|(15[^4,\D])|(18[0-9])|(17[0,8]))\d{8}$/;
+	            if(!isMobile.test(mobile)){
+	            	
+	                $('#register_2_error_email').text('手机号码格式不正确');
+	                return false;	                
+	            }
+				
+	            $('#register_error_email').text('');
+	            				
+				var parameter = {loginName:loginName,mobile:mobile};
+	            $.ajax({
+	                url:apiHostName+"/sendMobileForLogin",
+	                type:"post",
+	                data:JSON.stringify(parameter),
+	                dataType:"json",
+                	contentType:"application/json",
+	                beforeSend:function(){
+	                	$(this).addClass("btn_base_hover");
+	                    $(".fadeBox").show();
+	                	getTelCodeLock=true;
+						$(".getTelCode").addClass("on");
+						
+	                    
+	                },
+	                success:function(data){                           	
+	                    if(data.status==0){
+	                        showAlert(data.errorMsg);
+	                        
+	                        $(".getTelCode").removeClass("on");
+							getTelCodeLock=false;
+	                       
+	                        return;
+	                    }else if(data.status==1){   
+	                    	showAlert("手机动态码已发送！");
+	                    	var num=60;
+							$(".getTelCode").text(num+"秒后重发");
+	                    	var t=setInterval(function(){
+								if(num>0){
+									num--;
+									$(".getTelCode").text(num+"秒后重发");
+								}
+								else{
+									clearInterval(t);
+									$(".getTelCode").text('获取动态码');
+									
+									$(".getTelCode").removeClass("on");
+									getTelCodeLock=false;
+								}
+							},1000);
+							
+	                        return ;
+	                    }
+	
+	                },error:function(data){
+	                	$(".getTelCode").removeClass("on");
+						getTelCodeLock=false;
+	       		    
+	                },complete : function(XMLHttpRequest,status){ //请求完成后最终执行参数					
+						$(this).removeClass("btn_base_hover");
+	                    $(".fadeBox").hide();			    	                   	                    
+	                    var sessionstatus=XMLHttpRequest.getResponseHeader("sessionstatus");
+	                    if(sessionstatus=="timeout"){
+	                        var rediredUrl=XMLHttpRequest.getResponseHeader("rediredUrl");
+	                        window.open(rediredUrl,'_top');
+	                    }
+	                    return false;
+	                }
+	            });	
+			});
+			var registerLock2=false;
+			$("#btn_register_2").click(function(){
+				if(registerLock2)return false;
+				var dynamicCodeOfMobile=trim($("#register_txt_telCode").val());
+	
+				if (dynamicCodeOfMobile.length <= 0) {                    
+                    $('#register_2_error_email').text('手机动态码不能为空或空格');
+                    return false;
+                }  
+	            $('#register_2_error_email').text('');    
+				var parameter={loginName: loginName,dynamicCodeOfMobile: dynamicCodeOfMobile};
+				$.ajax({
+	                url:apiHostName+"/downloadByName",
+	                type:"post",
+	                data:JSON.stringify(parameter),
+	                dataType:"json",
+	                contentType:"application/json",
+	                beforeSend:function(){
+	                	$(this).addClass("btn_base_hover");
+	                    $(".fadeBox").show();
+	                	registerLock2=true;					
+	                    
+	                },
+	                success:function(data){                	
+	                    if(data.status==0){
+	                        showAlert(data.errorMsg);	                       
+	                        return;
+	                    }else if(data.status==1){   
+	                    	$("#registerStep_2").hide();
+							$("#registerStep_1").show();
+							$(".progress_bar:eq(1)").removeClass("cover");
+							$(".progress_bar:eq(0)").addClass("cover");
+							$(".step span:eq(1)").removeClass("cover");
+							$(".step span:eq(0)").addClass("cover")
+	                    	showAlert("您的信息提交成功！");
+	                    }
+	
+	                },error:function(data){
+	                	       		                   
+	                },complete : function(XMLHttpRequest,status){ //请求完成后最终执行参数
+	                	$(this).removeClass("btn_base_hover");
+	                    $(".fadeBox").hide();						
+						registerLock2=false;
+	                   	                    
+	                    var sessionstatus=XMLHttpRequest.getResponseHeader("sessionstatus");
+	                    if(sessionstatus=="timeout"){
+	                        var rediredUrl=XMLHttpRequest.getResponseHeader("rediredUrl");
+	                        window.open(rediredUrl,'_top');
+	                    }
+	                    return false;
+	                }
+	            });													
+				
+			})
+		</script>
+
+	</body>
+</html>

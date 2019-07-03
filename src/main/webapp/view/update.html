@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<link rel="stylesheet"  href="css/xuexin.css" />
+    	<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+    	<script src="js/json2.js" type="text/javascript" charset="utf-8"></script>
+    	<script src="js/date.js" type="text/javascript" charset="utf-8"></script>
+    	<script src="js/jquery-1.7.min.js" type="text/javascript" charset="utf-8"></script>
+<meta http-equiv="expires" content="-1" />
+<title>查询学历信息</title>
+
+<script type="text/javascript">
+	function submit() {
+		var identityCard = $("#identityCard").val();
+		var userName = $("#userName").val();
+		var loginName = $("#loginName").val();
+		var mobile = $("#mobile").val();
+		var parameter = {
+			"identityCard" : identityCard,
+			"userName" : userName,
+			"loginName" : loginName,
+			"mobile" : mobile
+		};
+		$.ajax({
+			//url : "http://10.3.51.155:9098/xueXinAssist/qryBaseInfo",
+			//url : "http://10.3.104.34:8019/xueXinAssist/qryBaseInfo",
+			url : "/xueXinAssist/qryBaseInfo",
+			type : "post",
+			data : JSON.stringify(parameter),
+			dataType : "json",
+			contentType : "application/json",
+			success : function(data) {
+				//弹出返回的html
+				if (data.status == 0) {
+					var msg = data.errorMsg;
+					alert(msg);
+					return;
+				} else if (data.status == 1) {
+					  handledBaseInfo(data.data);
+				      document.getElementById("xueli").src= "data:image/jgp;base64," + data.data.baseInfoPhoto; 
+				      document.getElementById("photo").src= "data:image/jgp;base64," + data.data.photo; 	
+				}
+			},
+			error : function(data) {
+			},
+			complete : function(XMLHttpRequest, status) { //请求完成后最终执行参数		            
+				return false;
+			}
+		});
+	};
+	
+	function update() {
+		var userName = $("#infoUC_userName").val();
+		var certificateNo = $("#infoUC_certificateNo").val();
+		var sex = $("#infoUC_sex").val();
+		var identityCard = $("#infoUC_identityCard").val();
+        var birthday = $("#infoUC_birthDay").val();
+		var admissionDay = $("#infoUC_admissionDay").val();
+		var graduationDay = $("#infoUC_graduationDay").val();
+		var schoolName = $("#infoUC_schoolName").val();
+        var major = $("#infoUC_major").val();
+		var educationCategory = $("#infoUC_educationCategory").val();
+		var schoolingLength = $("#infoUC_schoolingLength").val();
+		var learningWay = $("#infoUC_learningWay").val();
+		var arrangement = $("#infoUC_arrangement").val();
+		var graduation = $("#infoUC_graduation").val();
+		var principalName = $("#infoUC_principalName").val();
+		
+		
+		var id = $("#id").val();
+		var updateKey = $("#updateKey").val();
+		
+		var parameter = {
+			"userName" : userName,
+			"certificateNo" : certificateNo,
+			"sex" : sex,
+			"identityCard" : identityCard,
+			"birthday" : birthday,
+			"admissionDay" : admissionDay,
+			"graduationDay" : graduationDay,
+			"schoolName" : schoolName,
+			"major" : major,
+			"educationCategory" : educationCategory,
+			"schoolingLength" : schoolingLength,
+			"learningWay" : learningWay,
+			"arrangement" : arrangement,
+			"graduation" : graduation,
+			"principalName" : principalName,
+			"id" : id,
+			"updateKey" : updateKey
+		};
+		$.ajax({
+			//url : "http://10.3.51.155:9098/xueXinAssist/qryBaseInfo",
+			//url : "http://10.3.104.34:8019/xueXinAssist/qryBaseInfo",
+			url : "/xueXinAssist/update",
+			type : "post",
+			data : JSON.stringify(parameter),
+			dataType : "json",
+			contentType : "application/json",
+			success : function(data) {
+				//弹出返回的html
+				if (data.status == 0) {
+					var msg = data.errorMsg;
+					alert(msg);
+					return;
+				} else if (data.status == 1) {
+					var msg = "修改成功";
+					alert(msg);
+				}
+			},
+			error : function(data) {
+			},
+			complete : function(XMLHttpRequest, status) { //请求完成后最终执行参数		            
+				return false;
+			}
+		});
+	};
+	
+	function handledBaseInfo(data){
+		 if(data == null){
+			return;
+		 }
+		 $("#title").html(data.userName+"&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;学历证书编号："+data.certificateNo);
+	 //    $("#infoUC_userName").html(data.userName);
+	      document.getElementById("infoUC_userName").value=data.userName;
+	      document.getElementById("id").value=data.id;
+	    // $("#infoUC_userName").value=data.userName;
+	    // $("#infoUC_certificateNo").html(data.certificateNo);
+	      document.getElementById("infoUC_certificateNo").value=data.certificateNo;
+	   //  $("#infoUC_sex").html(data.sex);
+	      document.getElementById("infoUC_sex").value=data.sex;
+	  //   $("#infoUC_identityCard").html(data.identityCard);
+	      document.getElementById("infoUC_identityCard").value=data.identityCard;
+	   //  $("#infoUC_birthDay").html(dateToStr(data.birthday));
+	      document.getElementById("infoUC_birthDay").value=dateToStr(data.birthday);
+	    // $("#infoUC_admissionDay").html(dateToStr(data.admissionDay));
+	      document.getElementById("infoUC_admissionDay").value=dateToStr(data.admissionDay);
+	  //   $("#infoUC_graduationDay").html(dateToStr(data.graduationDay));
+	      document.getElementById("infoUC_graduationDay").value=dateToStr(data.graduationDay);
+	    // $("#infoUC_schoolName").html(data.schoolName);
+	      document.getElementById("infoUC_schoolName").value=data.schoolName;
+	   //  $("#infoUC_major").html(data.major);
+	      document.getElementById("infoUC_major").value=data.major;
+	   //  $("#infoUC_educationCategory").html(data.educationCategory);
+	      document.getElementById("infoUC_educationCategory").value=data.educationCategory;
+	  //   $("#infoUC_schoolingLength").html(data.schoolingLength);
+	      document.getElementById("infoUC_schoolingLength").value=data.schoolingLength;
+	  //   $("#infoUC_learningWay").html(data.learningWay);
+	      document.getElementById("infoUC_learningWay").value=data.learningWay;
+	  //   $("#infoUC_arrangement").html(data.arrangement);
+	      document.getElementById("infoUC_arrangement").value=data.arrangement;
+	 //    $("#infoUC_graduation").html(data.graduation);
+	      document.getElementById("infoUC_graduation").value=data.graduation;
+	//     $("#infoUC_principalName").html(data.principalName);
+	      document.getElementById("infoUC_principalName").value=data.principalName;
+	    $("#infoUC_updateTime").html(data.updateTime);
+	    //    document.getElementById("infoUC_updateTime").value=data.updateTime;
+	}
+</script>
+
+</head>
+
+
+<body>
+	<div class="main">
+		<table>
+			<tr>
+				<td></td>
+				<td>
+					<form name="loginForm">
+						身份证：<input type="text" style="height: 40px; width: 150px;" name="identityCard" id="identityCard" />
+						姓名：<input type="text" style="height: 40px; width: 150px;" name="userName" id="userName" />
+						手机号：<input type="text" style="height: 40px; width: 150px;" name="mobile" id="mobile" />
+						学历证书号：<input type="text" style="height: 40px; width: 150px;" name="loginName" id="loginName" />
+					</form>
+				</td>
+				<td><input type="button" value="查询" style="height: 40px; width: 100px;" id="submit" onclick="submit();" /></td>
+			</tr>
+			<tr>
+			<td></td>
+	         	<td>
+					<form name="updateForm">
+				    	<input type="hidden" name="id" id="id" value="" />
+						口令：<input type="text" style="height: 40px; width: 150px;" name="updateKey" id="updateKey" />
+					</form>
+				</td>
+				<td><input type="button" value="数据修改" style="height: 40px; width: 100px;" id="update" onclick="update();" /></td>
+			</tr>
+		</table>
+	</div>
+	
+		<div class="main">
+			<h2 id="title"></h2>	
+				<h3>学历信息</h3>
+			<div class="detailsCon" >
+				<div class="dConBox">	
+		    		<div id="jibenxinxi" style="display: block;">
+				        <br>
+					    <table cellspacing="0" cellpadding="0" class="detailsList">
+					      	<tbody><tr><th colspan="4" style="text-align:center;">基本信息 </th></tr>
+					        <tr>
+					          <th width="20%">姓名</th>
+					         <td width="30%"><input type="text" id="infoUC_userName" name="infoUC_userName"></input></td>
+					          <th>学历证书编号</th>
+					          <td width="30%"><input type="text" id="infoUC_certificateNo" name="infoUC_certificateNo"></input></td>
+					        <tr>
+					          <th>性别</th>
+					        <td width="30%"><input type="text" id="infoUC_sex" name="infoUC_sex"></input></td>
+					          <th width="20%">身份证</th>
+					          <td width="30%"><input type="text" id="infoUC_identityCard" name="infoUC_identityCard"></input></td>
+							</tr>
+					        <tr>        	
+					           <th>出生日期</th>
+					          <td width="30%"><input type="text" id="infoUC_birthDay" name="infoUC_birthDay"></input></td>
+							  <th width="20%">入学日期</th>
+					        <td width="30%"><input type="text" id="infoUC_admissionDay" name="infoUC_admissionDay"></input></td>
+					        </tr>
+					        
+					        <tr>
+					        	<th>毕（结）业日期</th>
+					             <td width="30%"><input type="text" id="infoUC_graduationDay" name="infoUC_graduationDay"></input></td>
+					          <th>学校名称</th>
+					  <td width="30%"><input type="text" id="infoUC_schoolName" name="infoUC_schoolName"></input></td>
+					        </tr>
+					        
+							  <tr>
+					        	<th>专业</th>
+					        	 <td width="30%"><input type="text" id="infoUC_major" name="infoUC_major"></input></td>
+					          <th>学历类别</th>
+					          <td width="30%"><input type="text" id="infoUC_educationCategory" name="infoUC_educationCategory"></input></td>
+					        </tr>
+					         <tr>
+					        	<th>学制</th>
+					         <td width="30%"><input type="text" id="infoUC_schoolingLength" name="infoUC_schoolingLength"></input></td>
+					          	<th>学习形式</th>
+					          	<td width="30%"><input type="text" id="infoUC_learningWay" name="infoUC_learningWay"></input></td>
+					        <tr>
+					          <th>层次</th>
+					         <td width="30%"><input type="text" id="infoUC_arrangement" name="infoUC_arrangement"></input></td>
+					          <th>毕（结）业</th>
+					       <td width="30%"><input type="text" id="infoUC_graduation" name="infoUC_graduation"></input></td>
+					        </tr>
+					        <tr>
+					          <th>校（院）长姓名</th>
+					           <td width="30%"><input type="text" id="infoUC_principalName" name="infoUC_principalName"></input></td>
+					          <th>爬取时间</th>
+					          <td><span id="infoUC_updateTime"></span></td>
+					        </tr>
+					        </tbody>
+					        </table>
+					</div>
+				</div>
+			</div>
+			
+			<div class="detailsCon" >
+			    <img id="xueli" class="code" src="" alt=""/>
+			</div>
+			<div class="detailsCon" >
+			    <img id="photo" class="code" src="" alt=""/>
+			</div>
+</div>
+
+</body>
+</html>

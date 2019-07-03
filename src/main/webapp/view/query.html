@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<link rel="stylesheet"  href="css/xuexin.css" />
+    	<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+    	<script src="js/json2.js" type="text/javascript" charset="utf-8"></script>
+    	<script src="js/date.js" type="text/javascript" charset="utf-8"></script>
+    	<script src="js/jquery-1.7.min.js" type="text/javascript" charset="utf-8"></script>
+<meta http-equiv="expires" content="-1" />
+<title>查询学历信息</title>
+
+<script type="text/javascript">
+	function submit() {
+		var identityCard = $("#identityCard").val();
+		var userName = $("#userName").val();
+		var loginName = $("#loginName").val();
+		var mobile = $("#mobile").val();
+		var parameter = {
+			"identityCard" : identityCard,
+			"userName" : userName,
+			"loginName" : loginName,
+			"mobile" : mobile
+		};
+		$.ajax({
+			url : "http://10.3.51.155:9098/xueXinAssist/qryBaseInfo",
+			//url : "http://10.3.104.34:8019/xueXinAssist/qryBaseInfo",
+			//url : "/xueXinAssist/qryBaseInfo",
+			type : "post",
+			data : JSON.stringify(parameter),
+			dataType : "json",
+			contentType : "application/json",
+			success : function(data) {
+				//弹出返回的html
+				if (data.status == 0) {
+					var msg = data.errorMsg;
+					alert(msg);
+					return;
+				} else if (data.status == 1) {
+					  handledBaseInfo(data.data);
+				      document.getElementById("xueli").src= "data:image/jgp;base64," + data.data.baseInfoPhoto; 
+				      document.getElementById("photo").src= "data:image/jgp;base64," + data.data.photo; 	
+				}
+			},
+			error : function(data) {
+			},
+			complete : function(XMLHttpRequest, status) { //请求完成后最终执行参数		            
+				return false;
+			}
+		});
+	};
+	
+	function update() {
+	window.open ("update.html", "new window", "height=500, width=700, toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no")
+	};
+	
+	function handledBaseInfo(data){
+		 if(data == null){
+			return;
+		 }
+		 $("#title").html(data.userName+"&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;学历证书编号："+data.certificateNo);
+	     $("#infoUC_userName").html(data.userName);
+	     $("#infoUC_certificateNo").html(data.certificateNo);
+	     $("#infoUC_sex").html(data.sex);
+	     $("#infoUC_identityCard").html(data.identityCard);
+	     $("#infoUC_birthDay").html(dateToStr(data.birthday));
+	     $("#infoUC_admissionDay").html(dateToStr(data.admissionDay));
+	     $("#infoUC_graduationDay").html(dateToStr(data.graduationDay));
+	     $("#infoUC_schoolName").html(data.schoolName);
+	     $("#infoUC_major").html(data.major);
+	     $("#infoUC_educationCategory").html(data.educationCategory);
+	     $("#infoUC_schoolingLength").html(data.schoolingLength);
+	     $("#infoUC_learningWay").html(data.learningWay);
+	     $("#infoUC_arrangement").html(data.arrangement);
+	     $("#infoUC_graduation").html(data.graduation);
+	     $("#infoUC_principalName").html(data.principalName);
+	     $("#infoUC_updateTime").html(data.updateTime);
+	}
+</script>
+
+</head>
+
+
+<body>
+	<div class="main">
+		<table>
+			<tr>
+				<td></td>
+				<td>
+					<form name="loginForm">
+						身份证：<input type="text" style="height: 40px; width: 150px;" name="identityCard" id="identityCard" />
+						姓名：<input type="text" style="height: 40px; width: 150px;" name="userName" id="userName" />
+						手机号：<input type="text" style="height: 40px; width: 150px;" name="mobile" id="mobile" />
+						学历证书号：<input type="text" style="height: 40px; width: 150px;" name="loginName" id="loginName" />
+					</form>
+				</td>
+				<td><input type="button" value="查询" style="height: 40px; width: 100px;" id="submit" onclick="submit();" /></td>
+			</tr>
+		</table>
+	</div>
+	
+		<div class="main">
+			<h2 id="title"></h2>	
+				<h3>学历信息</h3>
+			<div class="detailsCon" >
+				<div class="dConBox">	
+		    		<div id="jibenxinxi" style="display: block;">
+				        <br>
+					    <table cellspacing="0" cellpadding="0" class="detailsList">
+					      	<tbody><tr><th colspan="4" style="text-align:center;">基本信息 </th></tr>
+					        <tr>
+					          <th width="20%">姓名</th>
+					         <td width="30%"><span id="infoUC_userName"></span></td>
+					          <th>学历证书编号</th>
+					          <td width="30%"><span id="infoUC_certificateNo"></span></td>
+					        <tr>
+					          <th>性别</th>
+					        <td><span id="infoUC_sex"></span></td>
+					          <th width="20%">身份证</th>
+					           <td><span id="infoUC_identityCard"></span></td>
+							</tr>
+					        <tr>        	
+					           <th>出生日期</th>
+					          <td><span id="infoUC_birthDay"></span></td>
+							  <th width="20%">入学日期</th>
+					          <td><span id="infoUC_admissionDay"></span></td>
+					        </tr>
+					        
+					        <tr>
+					        	<th>毕（结）业日期</th>
+					            <td><span id="infoUC_graduationDay"></span></td>
+					          <th>学校名称</th>
+					          <td><span id="infoUC_schoolName"></span></td>
+					        </tr>
+					        
+							  <tr>
+					        	<th>专业</th>
+					            <td><span id="infoUC_major"></span></td>
+					          <th>学历类别</th>
+					          <td><span id="infoUC_educationCategory"></span></td>
+					        </tr>
+					         <tr>
+					        	<th>学制</th>
+					          <td><span id="infoUC_schoolingLength"></span></td>
+					          	<th>学习形式</th>
+					          <td><span id="infoUC_learningWay"></span></td>
+					        <tr>
+					          <th>层次</th>
+					           <td ><span id="infoUC_arrangement"></span></td>
+					          <th>毕（结）业</th>
+					          <td><span id="infoUC_graduation"></span></td>
+					        </tr>
+					        <tr>
+					          <th>校（院）长姓名</th>
+					           <td ><span id="infoUC_principalName"></span></td>
+					          <th>爬取时间</th>
+					          <td><span id="infoUC_updateTime"></span></td>
+					        </tr>
+					        </tbody>
+					        </table>
+					</div>
+				</div>
+			</div>
+			
+			<div class="detailsCon" >
+			    <img id="xueli" class="code" src="" alt=""/>
+			</div>
+			<div class="detailsCon" >
+			    <img id="photo" class="code" src="" alt=""/>
+			</div>
+</div>
+
+</body>
+</html>
