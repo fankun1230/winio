@@ -8,7 +8,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 @SpringBootApplication
 public class AppStart extends SpringBootServletInitializer {
-	//
+	//eee
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
