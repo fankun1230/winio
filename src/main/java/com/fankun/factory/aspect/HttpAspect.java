@@ -29,8 +29,8 @@ import com.fankun.factory.dao.TransactionMapper;
 import com.fankun.factory.entity.TransactionEntity;
 import com.fankun.factory.exception.ExceptionHandle;
 
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class HttpAspect {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HttpAspect.class);
